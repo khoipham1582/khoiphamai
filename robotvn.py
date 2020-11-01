@@ -25,10 +25,10 @@ while(True):
         robot_brain="Chào bạn tôi là robot việt nam"
     elif 'ngày' in you:
         today=date.today()
-        robot_brain=today.strftime("ngay %d thang %m nam %Y")
+        robot_brain="Ngày "+str(today.day)+" tháng "+str(today.month)+" năm "+str(today.year)
     elif "giờ" in you:
         now=datetime.now()
-        current_time=now.strftime("%H gio %M phut %S giay")
+        current_time=str(now.hour)+" giờ "+str(now.minute)+" phút "+str(now.second)+" giây."
         robot_brain=current_time
     elif "thủ tướng" in you:
         robot_brain="Thủ tướng nước việt nam hiện nay là Nguyễn Xuân Phúc"
@@ -48,10 +48,15 @@ while(True):
         robot_brain="Bơ là bé múp míp, hay bơ bơ, hậu đậu"
     else: robot_brain="Bạn có thể nói lại không, tôi nghe không rõ"
     print("Robot :"+robot_brain)
-    tts=gTTS(robot_brain,lang='vi')
-    #filemp3=random.randint(0,1000)
-    filemp3="mp3/"+datetime.now().strftime("%H-%m-%S")+".mp3"
-    tts.save(filemp3)
-    playsound(filemp3)
+    
+    try:
+        tts=gTTS(robot_brain,lang='vi')
+        #filemp3=random.randint(0,1000)
+        filemp3="mp3/"+datetime.now().strftime("%H-%m-%S")+".mp3"
+        tts.save(filemp3)
+        playsound(filemp3)
+    except:
+        print("không thể lưu mp3")
+    
     #robot_mount.say(robot_brain)
     #robot_mount.runAndWait()
